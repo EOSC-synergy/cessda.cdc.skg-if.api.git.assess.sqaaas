@@ -1,0 +1,78 @@
+config:
+  credentials: []
+  project_repos:
+    github.com/EOSC-synergy/sqaaas-tooling:
+      branch: main
+      repo: https://github.com/EOSC-synergy/sqaaas-tooling
+    github.com/cessda/cessda.cdc.skg-if.api:
+      branch: main
+      repo: https://github.com/cessda/cessda.cdc.skg-if.api.git
+environment:
+  JPL_DOCKERFORCEBUILD: enabled
+  JPL_KEEPGOING: enabled
+sqa_criteria:
+  QC.Acc:
+    repos:
+      github.com/cessda/cessda.cdc.skg-if.api git:
+        commands:
+        - /usr/bin/env sh .sqa/script.sunny-linen-squid.sh
+        container: qc.acc_pretty-mustard-setter
+  QC.Doc:
+    repos:
+      github.com/cessda/cessda.cdc.skg-if.api find_doc_files.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.zippy-zucchini-birman.sh
+        container: qc.doc_baggy-buff-skunk
+      github.com/cessda/cessda.cdc.skg-if.api git:
+        commands:
+        - /usr/bin/env sh .sqa/script.hasty-olivine-newt.sh
+        container: qc.doc_woozy-auburn-newt
+      github.com/cessda/cessda.cdc.skg-if.api restructuredtext-lint:
+        commands:
+        - /usr/bin/env sh .sqa/script.wheezy-amaranth-tortoise.sh
+        container: qc.doc_gimpy-amber-havanese
+  QC.Lic:
+    repos:
+      github.com/cessda/cessda.cdc.skg-if.api licensee:
+        commands:
+        - /usr/bin/env sh .sqa/script.squeaky-chartreuse-yak.sh
+        container: qc.lic_ready-pear-sponge
+  QC.Met:
+    repos:
+      github.com/cessda/cessda.cdc.skg-if.api cff-converter-python:
+        commands:
+        - /usr/bin/env sh .sqa/script.frumpy-puce-fox.sh
+        container: qc.met_stuffy-ochre-raccoon
+  QC.Sec:
+    repos:
+      github.com/cessda/cessda.cdc.skg-if.api bandit:
+        commands:
+        - /usr/bin/env sh .sqa/script.whiny-taupe-terrier.sh
+        container: qc.sec_woolly-orchid-salamander
+  QC.Sty:
+    repos:
+      github.com/cessda/cessda.cdc.skg-if.api flake8:
+        commands:
+        - /usr/bin/env sh .sqa/script.chummy-lilac-dragonfly.sh
+        container: qc.sty_leaky-myrtle-okapi
+      github.com/cessda/cessda.cdc.skg-if.api hadolint:
+        commands:
+        - /usr/bin/env sh .sqa/script.surly-lemon-woodlouse.sh
+        container: qc.sty_homely-gamboge-axolotl
+      github.com/cessda/cessda.cdc.skg-if.api jsonlint:
+        commands:
+        - /usr/bin/env sh .sqa/script.flaky-chartreuse-octopus.sh
+        container: qc.sty_baggy-viridian-slug
+  QC.Uni:
+    repos:
+      github.com/cessda/cessda.cdc.skg-if.api pytest:
+        commands:
+        - /usr/bin/env sh .sqa/script.randy-pink-cheetah.sh
+        container: qc.uni_muzzy-pear-insect
+  QC.Ver:
+    repos:
+      github.com/cessda/cessda.cdc.skg-if.api get_git_tags.py:
+        commands:
+        - /usr/bin/env sh .sqa/script.trippy-sangria-lemming.sh
+        container: qc.ver_homely-lavender-wrasse
+timeout: 5400
